@@ -1,0 +1,126 @@
+{
+  "run_id": "150fd84e3e968e28",
+  "created_at": "2026-10-21T10:46:32.184633+00:00",
+  "status": "completed",
+  "agent_version": "v1",
+  "split": "check",
+  "dataset_version": "long-brand-answers-50-v4",
+  "fact_version": "speaker-catalogue-v4",
+  "evaluator_version": "sentence-spans-and-labels-v4",
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "settings": {
+    "timeout_seconds": 180.0,
+    "max_turns": 4
+  },
+  "input_hashes": {
+    "answers.csv": "fa28e813ea54b4e5ea985585f22f084d826241e1182accbc27ace17066125724",
+    "brand_facts.csv": "2190d40fad2dd167ef2437956c43d595aaf2554ea673a4789b9343cb7e2936f2",
+    "development_gold.csv": "afe84cc78f304afb6a4aaa505dd7504af80fcbf8bc507806aa5ff0aab6bf4850"
+  },
+  "counts": {
+    "scheduled_answers": 10,
+    "completed_answers": 10,
+    "successful_answers": 0
+  },
+  "metrics": {
+    "gold_claims": null,
+    "accepted_predictions": 0,
+    "matched_spans": null,
+    "correct_labels": null,
+    "extraction_precision": null,
+    "extraction_recall": null,
+    "extraction_f1": null,
+    "joint_precision": null,
+    "joint_recall": null,
+    "joint_f1": null,
+    "gold_claim_coverage": null,
+    "answer_error_count": 10,
+    "answer_errors": {
+      "A41": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A42": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A43": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A44": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A45": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A46": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A47": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A48": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A49": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A50": "Claim offsets do not match quote and quote is not uniquely locatable"
+    }
+  },
+  "answer_outcomes": [
+    {
+      "answer_id": "A41",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 58.65627640008461
+    },
+    {
+      "answer_id": "A42",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 66.2706517999759
+    },
+    {
+      "answer_id": "A43",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 66.58002360002138
+    },
+    {
+      "answer_id": "A44",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 67.35868579999078
+    },
+    {
+      "answer_id": "A45",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 63.419605800067075
+    },
+    {
+      "answer_id": "A46",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 61.573980499990284
+    },
+    {
+      "answer_id": "A47",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 62.9906710999785
+    },
+    {
+      "answer_id": "A48",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 59.09870859992225
+    },
+    {
+      "answer_id": "A49",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 57.37698299996555
+    },
+    {
+      "answer_id": "A50",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 65.92968950001523
+    }
+  ],
+  "predictions": {
+    "A41": [],
+    "A42": [],
+    "A43": [],
+    "A44": [],
+    "A45": [],
+    "A46": [],
+    "A47": [],
+    "A48": [],
+    "A49": [],
+    "A50": []
+  }
+}

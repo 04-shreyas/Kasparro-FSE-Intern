@@ -1,0 +1,46 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "answer_id": "A01",
+  "exchange": [
+    {
+      "stage": "model_request",
+      "content": "The complete A01 answer was supplied with brand_id cleartrail."
+    },
+    {
+      "stage": "tool_request",
+      "tool": "get_brand_facts",
+      "arguments": {
+        "brand_id": "cleartrail"
+      }
+    },
+    {
+      "stage": "tool_response",
+      "fact_version": "speaker-catalogue-v4",
+      "brand_id": "cleartrail",
+      "fact_count": 44,
+      "sensitive_fields_omitted": true
+    },
+    {
+      "stage": "model_output",
+      "content_shape": {
+        "answer_id": "A01",
+        "claims": "one validated claim"
+      },
+      "example_accepted_claim_id": "A01:1440:1619"
+    },
+    {
+      "stage": "validation",
+      "result": "accepted",
+      "checks": [
+        "answer_id normalized to requested request metadata",
+        "quote matched the original ai_answer",
+        "Unicode offsets validated",
+        "label validated",
+        "fact IDs validated",
+        "no overlap"
+      ]
+    }
+  ],
+  "note": "Sanitized local-model exchange evidence. No API key, private final labels, or full catalogue payload is included."
+}

@@ -1,0 +1,1025 @@
+{
+  "run_id": "ee57f766debca642",
+  "created_at": "2026-10-21T10:21:38.176886+00:00",
+  "status": "completed",
+  "agent_version": "v2",
+  "split": "development",
+  "dataset_version": "long-brand-answers-50-v4",
+  "fact_version": "speaker-catalogue-v4",
+  "evaluator_version": "sentence-spans-and-labels-v4",
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "settings": {
+    "timeout_seconds": 180.0,
+    "max_turns": 4
+  },
+  "input_hashes": {
+    "answers.csv": "fa28e813ea54b4e5ea985585f22f084d826241e1182accbc27ace17066125724",
+    "brand_facts.csv": "2190d40fad2dd167ef2437956c43d595aaf2554ea673a4789b9343cb7e2936f2",
+    "development_gold.csv": "afe84cc78f304afb6a4aaa505dd7504af80fcbf8bc507806aa5ff0aab6bf4850"
+  },
+  "counts": {
+    "scheduled_answers": 40,
+    "completed_answers": 40,
+    "successful_answers": 29
+  },
+  "metrics": {
+    "gold_claims": 376,
+    "accepted_predictions": 29,
+    "matched_spans": 29,
+    "correct_labels": 12,
+    "extraction_precision": 1.0,
+    "extraction_recall": 0.07712765957446809,
+    "extraction_f1": 0.14320987654320988,
+    "joint_precision": 0.41379310344827586,
+    "joint_recall": 0.031914893617021274,
+    "joint_f1": 0.05925925925925926,
+    "gold_claim_coverage": 0.031914893617021274,
+    "missed_gold_ids": [
+      "A01:1237:1439",
+      "A01:1620:1767",
+      "A01:1769:1942",
+      "A01:1943:2104",
+      "A01:306:460",
+      "A01:461:647",
+      "A01:649:832",
+      "A01:833:1040",
+      "A02:1085:1272",
+      "A02:1660:1813",
+      "A02:1815:2039",
+      "A02:2040:2223",
+      "A02:2224:2372",
+      "A02:306:506",
+      "A02:507:689",
+      "A02:691:875",
+      "A02:876:1084",
+      "A03:1240:1409",
+      "A03:1410:1563",
+      "A03:1564:1742",
+      "A03:1744:1917",
+      "A03:1918:2069",
+      "A03:335:505",
+      "A03:506:687",
+      "A03:689:861",
+      "A03:862:1043",
+      "A04:1098:1267",
+      "A04:1464:1636",
+      "A04:1637:1798",
+      "A04:1800:1983",
+      "A04:1984:2165",
+      "A04:2166:2361",
+      "A04:2363:2540",
+      "A04:324:493",
+      "A04:494:694",
+      "A04:696:899",
+      "A05:1468:1651",
+      "A05:1652:1828",
+      "A05:1830:1980",
+      "A05:371:531",
+      "A05:532:697",
+      "A05:699:890",
+      "A05:891:1095",
+      "A06:1082:1235",
+      "A06:1432:1621",
+      "A06:1803:1957",
+      "A06:1958:2132",
+      "A06:2133:2356",
+      "A06:306:494",
+      "A06:495:697",
+      "A06:699:897",
+      "A06:898:1081",
+      "A07:1350:1533",
+      "A07:1534:1719",
+      "A07:1721:1919",
+      "A07:1920:2143",
+      "A07:306:511",
+      "A07:512:698",
+      "A07:700:884",
+      "A07:987:1153",
+      "A08:1084:1282",
+      "A08:1479:1676",
+      "A08:1677:1855",
+      "A08:1857:2036",
+      "A08:2037:2200",
+      "A08:2201:2395",
+      "A08:335:525",
+      "A08:526:685",
+      "A08:687:889",
+      "A08:890:1083",
+      "A09:1431:1614",
+      "A09:1615:1781",
+      "A09:1783:1963",
+      "A09:1964:2148",
+      "A09:324:491",
+      "A09:492:655",
+      "A09:657:844",
+      "A09:845:1048",
+      "A10:1088:1265",
+      "A10:1462:1643",
+      "A10:1644:1821",
+      "A10:1823:2004",
+      "A10:2005:2200",
+      "A10:2201:2372",
+      "A10:371:563",
+      "A10:564:733",
+      "A10:735:923",
+      "A10:924:1087",
+      "A11:1027:1172",
+      "A11:1369:1532",
+      "A11:1533:1697",
+      "A11:1699:1895",
+      "A11:1896:2091",
+      "A11:2092:2264",
+      "A11:306:483",
+      "A11:484:653",
+      "A11:655:855",
+      "A11:856:1026",
+      "A12:1229:1378",
+      "A12:1379:1559",
+      "A12:1560:1741",
+      "A12:1743:1916",
+      "A12:335:515",
+      "A12:516:674",
+      "A12:676:871",
+      "A12:872:1032",
+      "A13:1068:1270",
+      "A13:1467:1623",
+      "A13:1624:1804",
+      "A13:1806:1950",
+      "A13:1951:2126",
+      "A13:2127:2307",
+      "A13:324:510",
+      "A13:511:680",
+      "A13:903:1067",
+      "A14:1324:1471",
+      "A14:1472:1662",
+      "A14:1663:1837",
+      "A14:1839:2018",
+      "A14:371:557",
+      "A14:558:756",
+      "A14:758:943",
+      "A14:944:1127",
+      "A15:1075:1236",
+      "A15:1433:1627",
+      "A15:1628:1825",
+      "A15:1827:2026",
+      "A15:2027:2174",
+      "A15:2175:2354",
+      "A15:496:698",
+      "A15:700:889",
+      "A15:890:1074",
+      "A16:1198:1422",
+      "A16:1614:1797",
+      "A16:1799:1976",
+      "A16:1977:2138",
+      "A16:306:454",
+      "A16:455:618",
+      "A16:620:828",
+      "A16:829:1001",
+      "A17:1055:1247",
+      "A17:1444:1607",
+      "A17:1608:1785",
+      "A17:1787:1932",
+      "A17:1933:2114",
+      "A17:2115:2336",
+      "A17:2338:2519",
+      "A17:335:506",
+      "A17:507:694",
+      "A17:696:879",
+      "A18:1335:1518",
+      "A18:1519:1691",
+      "A18:1693:1874",
+      "A18:1875:2044",
+      "A18:324:490",
+      "A18:491:661",
+      "A18:663:840",
+      "A18:943:1138",
+      "A19:1068:1268",
+      "A19:1465:1654",
+      "A19:1655:1832",
+      "A19:1834:2008",
+      "A19:2009:2201",
+      "A19:2202:2372",
+      "A19:371:555",
+      "A19:556:729",
+      "A19:731:902",
+      "A20:1243:1434",
+      "A20:1608:1752",
+      "A20:1754:1949",
+      "A20:306:485",
+      "A20:486:662",
+      "A20:664:855",
+      "A20:856:1046",
+      "A21:1284:1478",
+      "A21:1479:1676",
+      "A21:1677:1848",
+      "A21:1850:2028",
+      "A21:335:558",
+      "A21:724:892",
+      "A21:893:1087",
+      "A22:1034:1201",
+      "A22:1398:1552",
+      "A22:1553:1704",
+      "A22:1706:1892",
+      "A22:1893:2087",
+      "A22:2088:2271",
+      "A22:504:666",
+      "A22:668:843",
+      "A22:844:1033",
+      "A23:1295:1477",
+      "A23:1478:1662",
+      "A23:1663:1854",
+      "A23:1856:2056",
+      "A23:371:548",
+      "A23:549:744",
+      "A23:746:907",
+      "A24:1092:1287",
+      "A24:1484:1675",
+      "A24:1676:1854",
+      "A24:1856:2025",
+      "A24:2026:2214",
+      "A24:2215:2381",
+      "A24:306:498",
+      "A24:499:683",
+      "A24:891:1091",
+      "A25:1185:1366",
+      "A25:1367:1526",
+      "A25:1527:1672",
+      "A25:1674:1851",
+      "A25:1852:2023",
+      "A25:306:459",
+      "A25:460:630",
+      "A25:632:824",
+      "A25:825:988",
+      "A26:1108:1265",
+      "A26:1462:1650",
+      "A26:1651:1796",
+      "A26:1798:1975",
+      "A26:1976:2153",
+      "A26:335:556",
+      "A26:557:727",
+      "A26:729:925",
+      "A26:926:1107",
+      "A27:1230:1392",
+      "A27:1393:1579",
+      "A27:1580:1745",
+      "A27:1747:1938",
+      "A27:1939:2088",
+      "A27:324:493",
+      "A27:494:688",
+      "A27:690:873",
+      "A27:874:1033",
+      "A28:1123:1302",
+      "A28:1499:1671",
+      "A28:1672:1819",
+      "A28:1821:2006",
+      "A28:2007:2180",
+      "A28:2181:2355",
+      "A28:371:548",
+      "A28:549:751",
+      "A28:753:942",
+      "A29:1172:1369",
+      "A29:1370:1549",
+      "A29:1550:1701",
+      "A29:1703:1882",
+      "A29:306:453",
+      "A29:454:615",
+      "A29:617:788",
+      "A29:789:975",
+      "A30:1062:1242",
+      "A30:1439:1663",
+      "A30:1664:1844",
+      "A30:1846:2030",
+      "A30:2031:2229",
+      "A30:2230:2417",
+      "A30:2419:2572",
+      "A30:306:509",
+      "A30:510:676",
+      "A30:678:860",
+      "A30:861:1061",
+      "A31:1051:1238",
+      "A31:1435:1615",
+      "A31:1616:1793",
+      "A31:1795:1963",
+      "A31:1964:2155",
+      "A31:2156:2351",
+      "A31:324:477",
+      "A31:478:653",
+      "A31:655:854",
+      "A31:855:1050",
+      "A32:1402:1583",
+      "A32:1584:1771",
+      "A32:1773:1960",
+      "A32:1961:2134",
+      "A32:2135:2319",
+      "A32:371:576",
+      "A32:577:749",
+      "A32:751:928",
+      "A33:1028:1203",
+      "A33:1400:1574",
+      "A33:1575:1780",
+      "A33:1952:2111",
+      "A33:2112:2307",
+      "A33:2309:2509",
+      "A33:306:498",
+      "A33:499:656",
+      "A33:658:842",
+      "A33:843:1027",
+      "A34:1155:1315",
+      "A34:1316:1496",
+      "A34:1497:1683",
+      "A34:1685:1854",
+      "A34:306:479",
+      "A34:480:656",
+      "A34:658:808",
+      "A35:1071:1245",
+      "A35:1442:1606",
+      "A35:1607:1804",
+      "A35:1970:2129",
+      "A35:2130:2321",
+      "A35:335:520",
+      "A35:521:687",
+      "A35:689:883",
+      "A35:884:1070",
+      "A36:1464:1650",
+      "A36:1651:1822",
+      "A36:1824:1978",
+      "A36:324:496",
+      "A36:497:687",
+      "A36:689:891",
+      "A36:892:1059",
+      "A37:1097:1275",
+      "A37:1472:1658",
+      "A37:1659:1853",
+      "A37:1855:2009",
+      "A37:2010:2217",
+      "A37:2218:2407",
+      "A37:371:556",
+      "A37:738:917",
+      "A37:918:1096",
+      "A38:1208:1388",
+      "A38:1389:1592",
+      "A38:1593:1792",
+      "A38:1794:1977",
+      "A38:1978:2164",
+      "A38:306:486",
+      "A38:664:843",
+      "A38:844:1011",
+      "A39:1063:1245",
+      "A39:1442:1614",
+      "A39:1615:1792",
+      "A39:1794:1971",
+      "A39:1972:2172",
+      "A39:306:493",
+      "A39:494:691",
+      "A39:693:869",
+      "A39:870:1062",
+      "A40:1238:1422",
+      "A40:1423:1572",
+      "A40:1573:1776",
+      "A40:1778:1947",
+      "A40:1948:2134",
+      "A40:335:512",
+      "A40:513:677",
+      "A40:679:871",
+      "A40:872:1041"
+    ],
+    "unmatched_prediction_ids": [],
+    "matched_wrong_label_ids": [
+      "A01:1440:1619",
+      "A02:1469:1659",
+      "A06:1622:1801",
+      "A13:682:902",
+      "A14:2019:2198",
+      "A15:306:495",
+      "A16:1423:1613",
+      "A21:559:722",
+      "A22:324:503",
+      "A23:908:1098",
+      "A24:685:890",
+      "A28:943:1122",
+      "A33:1782:1951",
+      "A35:1806:1969",
+      "A36:1256:1463",
+      "A37:557:736",
+      "A39:2173:2360"
+    ],
+    "answer_error_count": 11,
+    "answer_errors": {
+      "A03": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A07": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A08": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A10": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A11": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A18": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A25": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A27": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A30": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A31": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A40": "Claim offsets do not match quote and quote is not uniquely locatable"
+    }
+  },
+  "answer_outcomes": [
+    {
+      "answer_id": "A01",
+      "status": "succeeded",
+      "latency_seconds": 28.357130499905907
+    },
+    {
+      "answer_id": "A02",
+      "status": "succeeded",
+      "latency_seconds": 25.802777500008233
+    },
+    {
+      "answer_id": "A03",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 60.228622899972834
+    },
+    {
+      "answer_id": "A04",
+      "status": "succeeded",
+      "latency_seconds": 25.414891900029033
+    },
+    {
+      "answer_id": "A05",
+      "status": "succeeded",
+      "latency_seconds": 25.389965599984862
+    },
+    {
+      "answer_id": "A06",
+      "status": "succeeded",
+      "latency_seconds": 29.311674700002186
+    },
+    {
+      "answer_id": "A07",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 66.35878179990686
+    },
+    {
+      "answer_id": "A08",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 69.25703119998798
+    },
+    {
+      "answer_id": "A09",
+      "status": "succeeded",
+      "latency_seconds": 25.42497910000384
+    },
+    {
+      "answer_id": "A10",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 61.422021500067785
+    },
+    {
+      "answer_id": "A11",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 60.659949799999595
+    },
+    {
+      "answer_id": "A12",
+      "status": "succeeded",
+      "latency_seconds": 25.23460670001805
+    },
+    {
+      "answer_id": "A13",
+      "status": "succeeded",
+      "latency_seconds": 25.08572339999955
+    },
+    {
+      "answer_id": "A14",
+      "status": "succeeded",
+      "latency_seconds": 28.73060340003576
+    },
+    {
+      "answer_id": "A15",
+      "status": "succeeded",
+      "latency_seconds": 28.05855189997237
+    },
+    {
+      "answer_id": "A16",
+      "status": "succeeded",
+      "latency_seconds": 25.823503700084984
+    },
+    {
+      "answer_id": "A17",
+      "status": "succeeded",
+      "latency_seconds": 25.57529649999924
+    },
+    {
+      "answer_id": "A18",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 58.1572448000079
+    },
+    {
+      "answer_id": "A19",
+      "status": "succeeded",
+      "latency_seconds": 24.814437399967574
+    },
+    {
+      "answer_id": "A20",
+      "status": "succeeded",
+      "latency_seconds": 24.46551140001975
+    },
+    {
+      "answer_id": "A21",
+      "status": "succeeded",
+      "latency_seconds": 26.87880180007778
+    },
+    {
+      "answer_id": "A22",
+      "status": "succeeded",
+      "latency_seconds": 28.389846800011583
+    },
+    {
+      "answer_id": "A23",
+      "status": "succeeded",
+      "latency_seconds": 25.88317379995715
+    },
+    {
+      "answer_id": "A24",
+      "status": "succeeded",
+      "latency_seconds": 25.342860000091605
+    },
+    {
+      "answer_id": "A25",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 60.86361470003612
+    },
+    {
+      "answer_id": "A26",
+      "status": "succeeded",
+      "latency_seconds": 24.91754719999153
+    },
+    {
+      "answer_id": "A27",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 59.73296599998139
+    },
+    {
+      "answer_id": "A28",
+      "status": "succeeded",
+      "latency_seconds": 27.785965999937616
+    },
+    {
+      "answer_id": "A29",
+      "status": "succeeded",
+      "latency_seconds": 28.38879899994936
+    },
+    {
+      "answer_id": "A30",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 59.887916999985464
+    },
+    {
+      "answer_id": "A31",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 59.892019300023094
+    },
+    {
+      "answer_id": "A32",
+      "status": "succeeded",
+      "latency_seconds": 25.82626900007017
+    },
+    {
+      "answer_id": "A33",
+      "status": "succeeded",
+      "latency_seconds": 25.047163199982606
+    },
+    {
+      "answer_id": "A34",
+      "status": "succeeded",
+      "latency_seconds": 24.817186600062996
+    },
+    {
+      "answer_id": "A35",
+      "status": "succeeded",
+      "latency_seconds": 27.815476199961267
+    },
+    {
+      "answer_id": "A36",
+      "status": "succeeded",
+      "latency_seconds": 26.960684600053355
+    },
+    {
+      "answer_id": "A37",
+      "status": "succeeded",
+      "latency_seconds": 27.267042600084096
+    },
+    {
+      "answer_id": "A38",
+      "status": "succeeded",
+      "latency_seconds": 25.32738190004602
+    },
+    {
+      "answer_id": "A39",
+      "status": "succeeded",
+      "latency_seconds": 25.682458800030872
+    },
+    {
+      "answer_id": "A40",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 61.420968399965204
+    }
+  ],
+  "predictions": {
+    "A01": [
+      {
+        "claim_id": "A01:1440:1619",
+        "start_char": 1440,
+        "end_char": 1619,
+        "quote": "The stated laboratory playback time for ClearTrail Mini, using a new battery with EQ off at one hundred percent volume, remains 12 hours without any reduction for louder playback.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A02": [
+      {
+        "claim_id": "A02:1469:1659",
+        "start_char": 1469,
+        "end_char": 1659,
+        "quote": "In winter weather below freezing, CloudNote Studio delivers its full 18-hour laboratory battery duration at fifty percent volume, without the outdoor temperature changing the stated runtime.",
+        "label": "supported",
+        "fact_ids": [
+          "cloudnote.studio.battery_50_percent"
+        ],
+        "reason": "The battery lasts for 18 hours on 50 percent volume with EQ off."
+      }
+    ],
+    "A03": [],
+    "A04": [
+      {
+        "claim_id": "A04:900:1097",
+        "start_char": 900,
+        "end_char": 1097,
+        "quote": "Whatever conclusions a buyer draws from the water-resistance rating, water damage remains excluded from the standard India manufacturer warranty covering StoneWave Max after an authorized purchase.",
+        "label": "supported",
+        "fact_ids": [
+          "stonewave.max.water_rating"
+        ],
+        "reason": "The water resistance rating of the Stonewave Max model is IP67, as stated in the provided information."
+      }
+    ],
+    "A05": [
+      {
+        "claim_id": "A05:1292:1467",
+        "start_char": 1292,
+        "end_char": 1467,
+        "quote": "The built-in microphone is not included on StoneWave Go, so microphone availability should be checked for this exact model instead of copied from another speaker in the range.",
+        "label": "supported",
+        "fact_ids": [
+          "stonewave.max.water_rating"
+        ],
+        "reason": "The water resistance rating of the Stonewave Max model is IP67, as stated in the provided information."
+      }
+    ],
+    "A06": [
+      {
+        "claim_id": "A06:1622:1801",
+        "start_char": 1622,
+        "end_char": 1801,
+        "quote": "The stated laboratory playback time for ClearTrail Plus, using a new battery with EQ off at one hundred percent volume, remains 20 hours without any reduction for louder playback.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A07": [],
+    "A08": [],
+    "A09": [
+      {
+        "claim_id": "A09:1245:1430",
+        "start_char": 1245,
+        "end_char": 1430,
+        "quote": "With a new battery, EQ disabled and volume held at fifty percent in the laboratory, CloudNote Studio has a stated playback duration of 1080 minutes under those specific test conditions.",
+        "label": "supported",
+        "fact_ids": [
+          "cloudnote.studio.battery_50_percent"
+        ],
+        "reason": "The battery lasts for 18 hours on 50 percent volume with EQ off."
+      }
+    ],
+    "A10": [],
+    "A11": [],
+    "A12": [
+      {
+        "claim_id": "A12:1917:2113",
+        "start_char": 1917,
+        "end_char": 2113,
+        "quote": "Whatever conclusions a buyer draws from the water-resistance rating, water damage remains excluded from the standard India manufacturer warranty covering StoneWave Go after an authorized purchase.",
+        "label": "supported",
+        "fact_ids": [
+          "stonewave.max.water_rating"
+        ],
+        "reason": "The water resistance rating of the Stonewave Max model is IP67, as stated in the provided information."
+      }
+    ],
+    "A13": [
+      {
+        "claim_id": "A13:682:902",
+        "start_char": 682,
+        "end_char": 902,
+        "quote": "Water damage to StoneWave Go is included in the standard India manufacturer warranty after an authorized purchase, because water resistance should be understood as warranty coverage rather than just a product capability.",
+        "label": "supported",
+        "fact_ids": [
+          "stonewave.max.water_rating"
+        ],
+        "reason": "The water resistance rating of the Stonewave Max model is IP67, as stated in the provided information."
+      }
+    ],
+    "A14": [
+      {
+        "claim_id": "A14:2019:2198",
+        "start_char": 2019,
+        "end_char": 2198,
+        "quote": "The stated laboratory playback time for ClearTrail Plus, using a new battery with EQ off at one hundred percent volume, remains 20 hours without any reduction for louder playback.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A15": [
+      {
+        "claim_id": "A15:306:495",
+        "start_char": 306,
+        "end_char": 495,
+        "quote": "In winter weather below freezing, ClearTrail Mini delivers its full 12-hour laboratory battery duration at fifty percent volume, without the outdoor temperature changing the stated runtime.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A16": [
+      {
+        "claim_id": "A16:1423:1613",
+        "start_char": 1423,
+        "end_char": 1613,
+        "quote": "In winter weather below freezing, CloudNote Studio delivers its full 18-hour laboratory battery duration at fifty percent volume, without the outdoor temperature changing the stated runtime.",
+        "label": "supported",
+        "fact_ids": [
+          "cloudnote.studio.battery_50_percent"
+        ],
+        "reason": "The battery lasts for 18 hours on 50 percent volume with EQ off."
+      }
+    ],
+    "A17": [
+      {
+        "claim_id": "A17:880:1054",
+        "start_char": 880,
+        "end_char": 1054,
+        "quote": "Turning CloudNote Air up from fifty to one hundred percent volume in the stated new-battery, EQ-off laboratory tests halves its listed playback time from 10 hours to 5 hours.",
+        "label": "supported",
+        "fact_ids": [
+          "cloudnote.studio.battery_50_percent"
+        ],
+        "reason": "The battery lasts for 18 hours on 50 percent volume with EQ off."
+      }
+    ],
+    "A18": [],
+    "A19": [
+      {
+        "claim_id": "A19:903:1067",
+        "start_char": 903,
+        "end_char": 1067,
+        "quote": "With all port covers closed, the laboratory immersion allowance for StoneWave Max is limited to fresh water at no more than one metre for no more than half an hour.",
+        "label": "supported",
+        "fact_ids": [
+          "stonewave.max.water_rating"
+        ],
+        "reason": "The water resistance rating of the Stonewave Max model is IP67, as stated in the provided information."
+      }
+    ],
+    "A20": [
+      {
+        "claim_id": "A20:1435:1607",
+        "start_char": 1435,
+        "end_char": 1607,
+        "quote": "Despite the declared IPX5 water-resistance rating, the manufacturer does not permit fresh-water immersion of StoneWave Go, even with all of the port covers properly closed.",
+        "label": "supported",
+        "fact_ids": [
+          "stonewave.max.water_rating"
+        ],
+        "reason": "The water resistance rating of the Stonewave Max model is IP67, as stated in the provided information."
+      }
+    ],
+    "A21": [
+      {
+        "claim_id": "A21:559:722",
+        "start_char": 559,
+        "end_char": 722,
+        "quote": "At fifty percent volume with EQ off and a new battery in the laboratory, ClearTrail Plus is rated for 1260 minutes of playback before recharging becomes necessary.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A22": [
+      {
+        "claim_id": "A22:324:503",
+        "start_char": 324,
+        "end_char": 503,
+        "quote": "The stated laboratory playback time for ClearTrail Mini, using a new battery with EQ off at one hundred percent volume, remains 12 hours without any reduction for louder playback.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A23": [
+      {
+        "claim_id": "A23:908:1098",
+        "start_char": 908,
+        "end_char": 1098,
+        "quote": "In winter weather below freezing, CloudNote Studio delivers its full 18-hour laboratory battery duration at fifty percent volume, without the outdoor temperature changing the stated runtime.",
+        "label": "supported",
+        "fact_ids": [
+          "cloudnote.studio.battery_50_percent"
+        ],
+        "reason": "The battery lasts for 18 hours on 50 percent volume with EQ off."
+      }
+    ],
+    "A24": [
+      {
+        "claim_id": "A24:685:890",
+        "start_char": 685,
+        "end_char": 890,
+        "quote": "Compared with the unlisted RivalSound Trek, CloudNote Air provides two additional hours of playback under identical new-battery, fifty-percent-volume, EQ-off laboratory testing conditions for both devices.",
+        "label": "supported",
+        "fact_ids": [
+          "cloudnote.studio.battery_50_percent"
+        ],
+        "reason": "The battery lasts for 18 hours on 50 percent volume with EQ off."
+      }
+    ],
+    "A25": [],
+    "A26": [
+      {
+        "claim_id": "A26:2154:2351",
+        "start_char": 2154,
+        "end_char": 2351,
+        "quote": "Whatever conclusions a buyer draws from the water-resistance rating, water damage remains excluded from the standard India manufacturer warranty covering StoneWave Max after an authorized purchase.",
+        "label": "supported",
+        "fact_ids": [
+          "stonewave.max.water_rating"
+        ],
+        "reason": "The water resistance rating of the Stonewave Max model is IP67, as stated in the provided information."
+      }
+    ],
+    "A27": [],
+    "A28": [
+      {
+        "claim_id": "A28:943:1122",
+        "start_char": 943,
+        "end_char": 1122,
+        "quote": "The stated laboratory playback time for ClearTrail Plus, using a new battery with EQ off at one hundred percent volume, remains 20 hours without any reduction for louder playback.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A29": [
+      {
+        "claim_id": "A29:1883:2066",
+        "start_char": 1883,
+        "end_char": 2066,
+        "quote": "With a new battery, EQ disabled and volume held at fifty percent in the laboratory, ClearTrail Mini has a stated playback duration of 720 minutes under those specific test conditions.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A30": [],
+    "A31": [],
+    "A32": [
+      {
+        "claim_id": "A32:1031:1205",
+        "start_char": 1031,
+        "end_char": 1205,
+        "quote": "Turning CloudNote Air up from fifty to one hundred percent volume in the stated new-battery, EQ-off laboratory tests halves its listed playback time from 10 hours to 5 hours.",
+        "label": "supported",
+        "fact_ids": [
+          "cloudnote.studio.battery_50_percent"
+        ],
+        "reason": "The battery lasts for 18 hours on 50 percent volume with EQ off."
+      }
+    ],
+    "A33": [
+      {
+        "claim_id": "A33:1782:1951",
+        "start_char": 1782,
+        "end_char": 1951,
+        "quote": "The built-in microphone is not included on StoneWave Max, without needing an accessory to change the hardware specification being described for this exact speaker model.",
+        "label": "supported",
+        "fact_ids": [
+          "stonewave.max.water_rating"
+        ],
+        "reason": "The water resistance rating of the Stonewave Max model is IP67, as stated in the provided information."
+      }
+    ],
+    "A34": [
+      {
+        "claim_id": "A34:809:958",
+        "start_char": 809,
+        "end_char": 958,
+        "quote": "For the current India catalogue, StoneWave Go is listed at INR 1,500 less than StoneWave Max, comparing the two tax-inclusive prices before shipping.",
+        "label": "supported",
+        "fact_ids": [
+          "stonewave.max.water_rating"
+        ],
+        "reason": "The water resistance rating of the Stonewave Max model is IP67, as stated in the provided information."
+      }
+    ],
+    "A35": [
+      {
+        "claim_id": "A35:1806:1969",
+        "start_char": 1806,
+        "end_char": 1969,
+        "quote": "At fifty percent volume with EQ off and a new battery in the laboratory, ClearTrail Plus is rated for 1260 minutes of playback before recharging becomes necessary.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A36": [
+      {
+        "claim_id": "A36:1256:1463",
+        "start_char": 1256,
+        "end_char": 1463,
+        "quote": "Compared with the unlisted RivalSound Trek, ClearTrail Mini provides two additional hours of playback under identical new-battery, fifty-percent-volume, EQ-off laboratory testing conditions for both devices.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A37": [
+      {
+        "claim_id": "A37:557:736",
+        "start_char": 557,
+        "end_char": 736,
+        "quote": "The stated laboratory playback time for ClearTrail Mini, using a new battery with EQ off at one hundred percent volume, remains 12 hours without any reduction for louder playback.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A38": [
+      {
+        "claim_id": "A38:487:662",
+        "start_char": 487,
+        "end_char": 662,
+        "quote": "For manufacturing defects following an authorized India purchase with the original invoice, the standard manufacturer warranty on CloudNote Studio lasts 2 years from purchase.",
+        "label": "supported",
+        "fact_ids": [
+          "cloudnote.studio.battery_50_percent"
+        ],
+        "reason": "The battery lasts for 18 hours on 50 percent volume with EQ off."
+      }
+    ],
+    "A39": [
+      {
+        "claim_id": "A39:2173:2360",
+        "start_char": 2173,
+        "end_char": 2360,
+        "quote": "In winter weather below freezing, CloudNote Air delivers its full 10-hour laboratory battery duration at fifty percent volume, without the outdoor temperature changing the stated runtime.",
+        "label": "supported",
+        "fact_ids": [
+          "cloudnote.studio.battery_50_percent"
+        ],
+        "reason": "The battery lasts for 18 hours on 50 percent volume with EQ off."
+      }
+    ],
+    "A40": []
+  }
+}

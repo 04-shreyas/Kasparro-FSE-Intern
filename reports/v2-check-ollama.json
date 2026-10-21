@@ -1,0 +1,176 @@
+{
+  "run_id": "d73f301091aeba89",
+  "created_at": "2026-10-21T10:57:28.022619+00:00",
+  "status": "completed",
+  "agent_version": "v2",
+  "split": "check",
+  "dataset_version": "long-brand-answers-50-v4",
+  "fact_version": "speaker-catalogue-v4",
+  "evaluator_version": "sentence-spans-and-labels-v4",
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "settings": {
+    "timeout_seconds": 180.0,
+    "max_turns": 4
+  },
+  "input_hashes": {
+    "answers.csv": "fa28e813ea54b4e5ea985585f22f084d826241e1182accbc27ace17066125724",
+    "brand_facts.csv": "2190d40fad2dd167ef2437956c43d595aaf2554ea673a4789b9343cb7e2936f2",
+    "development_gold.csv": "afe84cc78f304afb6a4aaa505dd7504af80fcbf8bc507806aa5ff0aab6bf4850"
+  },
+  "counts": {
+    "scheduled_answers": 10,
+    "completed_answers": 10,
+    "successful_answers": 5
+  },
+  "metrics": {
+    "gold_claims": null,
+    "accepted_predictions": 5,
+    "matched_spans": null,
+    "correct_labels": null,
+    "extraction_precision": null,
+    "extraction_recall": null,
+    "extraction_f1": null,
+    "joint_precision": null,
+    "joint_recall": null,
+    "joint_f1": null,
+    "gold_claim_coverage": null,
+    "answer_error_count": 5,
+    "answer_errors": {
+      "A41": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A43": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A44": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A45": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "A47": "Claim offsets do not match quote and quote is not uniquely locatable"
+    }
+  },
+  "answer_outcomes": [
+    {
+      "answer_id": "A41",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 58.54288269998506
+    },
+    {
+      "answer_id": "A42",
+      "status": "succeeded",
+      "latency_seconds": 27.32608419994358
+    },
+    {
+      "answer_id": "A43",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 66.09631980000995
+    },
+    {
+      "answer_id": "A44",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 67.37097030004952
+    },
+    {
+      "answer_id": "A45",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 60.17672419990413
+    },
+    {
+      "answer_id": "A46",
+      "status": "succeeded",
+      "latency_seconds": 24.98306570004206
+    },
+    {
+      "answer_id": "A47",
+      "status": "error",
+      "error": "Claim offsets do not match quote and quote is not uniquely locatable",
+      "latency_seconds": 57.91248329996597
+    },
+    {
+      "answer_id": "A48",
+      "status": "succeeded",
+      "latency_seconds": 24.65657520003151
+    },
+    {
+      "answer_id": "A49",
+      "status": "succeeded",
+      "latency_seconds": 25.08197990001645
+    },
+    {
+      "answer_id": "A50",
+      "status": "succeeded",
+      "latency_seconds": 27.494339999975637
+    }
+  ],
+  "predictions": {
+    "A41": [],
+    "A42": [
+      {
+        "claim_id": "A42:1047:1236",
+        "start_char": 1047,
+        "end_char": 1236,
+        "quote": "In winter weather below freezing, ClearTrail Plus delivers its full 20-hour laboratory battery duration at fifty percent volume, without the outdoor temperature changing the stated runtime.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ],
+    "A43": [],
+    "A44": [],
+    "A45": [],
+    "A46": [
+      {
+        "claim_id": "A46:575:762",
+        "start_char": 575,
+        "end_char": 762,
+        "quote": "In winter weather below freezing, CloudNote Air delivers its full 10-hour laboratory battery duration at fifty percent volume, without the outdoor temperature changing the stated runtime.",
+        "label": "supported",
+        "fact_ids": [
+          "cloudnote.studio.battery_50_percent"
+        ],
+        "reason": "The battery lasts for 18 hours on 50 percent volume with EQ off."
+      }
+    ],
+    "A47": [],
+    "A48": [
+      {
+        "claim_id": "A48:306:502",
+        "start_char": 306,
+        "end_char": 502,
+        "quote": "Whatever conclusions a buyer draws from the water-resistance rating, water damage remains excluded from the standard India manufacturer warranty covering StoneWave Go after an authorized purchase.",
+        "label": "supported",
+        "fact_ids": [
+          "stonewave.max.water_rating"
+        ],
+        "reason": "The water resistance rating of the Stonewave Max model is IP67, as stated in the provided information."
+      }
+    ],
+    "A49": [
+      {
+        "claim_id": "A49:335:531",
+        "start_char": 335,
+        "end_char": 531,
+        "quote": "Whatever conclusions a buyer draws from the water-resistance rating, water damage remains excluded from the standard India manufacturer warranty covering StoneWave Go after an authorized purchase.",
+        "label": "supported",
+        "fact_ids": [
+          "stonewave.max.water_rating"
+        ],
+        "reason": "The water resistance rating of the Stonewave Max model is IP67, as stated in the provided information."
+      }
+    ],
+    "A50": [
+      {
+        "claim_id": "A50:523:702",
+        "start_char": 523,
+        "end_char": 702,
+        "quote": "The stated laboratory playback time for ClearTrail Plus, using a new battery with EQ off at one hundred percent volume, remains 20 hours without any reduction for louder playback.",
+        "label": "supported",
+        "fact_ids": [
+          "cleartrail.plus.battery_50_percent"
+        ],
+        "reason": "The fact states that the battery lasts for 20 hours on 50 percent volume when the EQ is off, which matches the claim."
+      }
+    ]
+  }
+}
