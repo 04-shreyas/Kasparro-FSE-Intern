@@ -108,6 +108,9 @@ its free quota and OpenAI had no API credits. Ollama was used for local
 pipeline evidence and is labelled as such. See
 `reports/submission-status.md` and
 `reports/sanitized-ollama-exchange.json` for the evidence and limitations.
+The targeted v2 change and its deliberately non-comparable partial-baseline
+comparison are recorded in
+`reports/v1-v2-development-comparison.json`.
 
 The FastAPI/PostgreSQL implementation is included and was verified with a live
 local PostgreSQL round trip: the schema was initialized, an evaluation run,

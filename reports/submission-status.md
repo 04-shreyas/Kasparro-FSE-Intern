@@ -40,3 +40,13 @@ Then call `POST /evaluation-runs` and retrieve the run with
 
 The controlled suite was run locally and passed. The final observed result was
 16 passed tests with one dependency deprecation warning.
+
+## Targeted improvement comparison
+
+V2 adds a sentence-by-sentence review for connected clauses, comparisons,
+historical dates, policy conditions, and factual assertions embedded in advice.
+The comparison is recorded in `v1-v2-development-comparison.json`. V1 only
+completed 8/40 answers, so the report explicitly avoids claiming a fair
+full-split score improvement. V2 completed 40/40 locally with extraction F1
+0.1432 and joint F1 0.0593; these are Ollama results, not hosted-provider
+benchmark results.

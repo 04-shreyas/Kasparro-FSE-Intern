@@ -10,10 +10,19 @@ from fastapi import BackgroundTasks, FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict, Field
 
 from .agent import AnswerProcessingError, ClaimAgent
-from .data import load_facts
+from .data import (
+    DATASET_VERSION,
+    EVALUATOR_VERSION,
+    FACT_VERSION,
+    file_hash,
+    load_answers,
+    load_facts,
+    load_gold,
+)
 from .db import Database
 from .facts import FactStore
 from .provider import GeminiProvider, OllamaProvider, OpenAIProvider
+from .scoring import check_summary, score_development
 from .validation import Claim
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -70,6 +79,34 @@ def get_agent(version: str) -> ClaimAgent:
     )
 
 
+def _run_metadata(version: str, split: str) -> dict[str, Any]:
+    provider_name = os.getenv("AGENT_PROVIDER", "openai").lower()
+    if provider_name == "ollama":
+        model = os.getenv("OLLAMA_MODEL", "qwen2.5-coder:7b")
+    elif provider_name == "gemini":
+        model = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+    else:
+        model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+    timeout = float(os.getenv("AGENT_TIMEOUT_SECONDS", "180"))
+    max_turns = 4 if provider_name == "ollama" else 2
+    return {
+        "source": "api",
+        "split": split,
+        "agent_version": version,
+        "dataset_version": DATASET_VERSION,
+        "fact_version": FACT_VERSION,
+        "evaluator_version": EVALUATOR_VERSION,
+        "provider": provider_name,
+        "model": model,
+        "settings": {"timeout_seconds": timeout, "max_turns": max_turns},
+        "source_revision": os.getenv("SOURCE_REVISION"),
+        "input_hashes": {
+            name: file_hash(ROOT / name)
+            for name in ("answers.csv", "brand_facts.csv", "development_gold.csv")
+        },
+    }
+
+
 @app.post("/classify")
 def classify(request: ClassifyRequest) -> dict[str, Any]:
     if request.brand_id not in store.brands:
@@ -89,10 +126,26 @@ def evaluation_runs(request: EvaluationRunRequest, background_tasks: BackgroundT
         raise HTTPException(503, "DATABASE_URL is not configured")
     run_id = str(uuid.uuid4())
     db = Database(os.environ["DATABASE_URL"])
-    db.create_run(run_id, version, split, {"source": "api"})
+    metadata = _run_metadata(version, split)
+    db.create_run(run_id, version, split, metadata)
     background_tasks.add_task(_process_run, run_id, version, split)
-    scheduled = 40 if split == "development" else 10
-    return {"run_id": run_id, "status": "processing", "scheduled_answers": scheduled}
+    scheduled = sum(1 for answer in load_answers(ROOT / "answers.csv") if answer.split == split)
+    metrics = (
+        score_development(load_gold(ROOT / "development_gold.csv"), {}, {})
+        if split == "development"
+        else check_summary({}, {})
+    )
+    return {
+        "run_id": run_id,
+        "status": "processing",
+        "counts": {
+            "scheduled_answers": scheduled,
+            "completed_answers": 0,
+            "successful_answers": 0,
+            "error_answers": 0,
+        },
+        "metrics": metrics,
+    }
 
 
 def _process_run(run_id: str, version: str, split: str) -> None:
@@ -102,16 +155,27 @@ def _process_run(run_id: str, version: str, split: str) -> None:
     db = Database(os.environ["DATABASE_URL"])
     agent = get_agent(version)
     answers = [answer for answer in load_answers(ROOT / "answers.csv") if answer.split == split]
+    predictions: dict[str, list[dict[str, Any]]] = {}
+    errors: dict[str, str] = {}
     for answer in answers:
         try:
             claims, latency = agent.classify(answer.answer_id, answer.brand_id, answer.question, answer.ai_answer)
+            predictions[answer.answer_id] = [claim.as_dict() for claim in claims]
             db.add_answer(run_id, answer.answer_id, "succeeded", round(latency * 1000), None)
             for claim in claims:
                 db.add_claim(run_id, answer.answer_id, claim.as_dict())
         except AnswerProcessingError as exc:
-            db.add_answer(run_id, answer.answer_id, "error", 0, str(exc)[:500])
+            error = str(exc)[:500]
+            errors[answer.answer_id] = error
+            predictions[answer.answer_id] = []
+            db.add_answer(run_id, answer.answer_id, "error", 0, error)
     db.commit()
-    db.finish_run(run_id, "completed", {})
+    metrics = (
+        score_development(load_gold(ROOT / "development_gold.csv"), predictions, errors)
+        if split == "development"
+        else check_summary(predictions, errors)
+    )
+    db.finish_run(run_id, "completed", metrics)
 
 
 @app.get("/evaluation-runs/{run_id}")

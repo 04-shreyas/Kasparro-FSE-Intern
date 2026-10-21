@@ -1,0 +1,31 @@
+{
+  "comparison_status": "partial_baseline_not_fairly_comparable",
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "same_inputs_and_evaluator": true,
+  "v1": {
+    "artifact": "v1-development-ollama-frozen.json",
+    "scheduled_answers": 40,
+    "completed_answers": 8,
+    "successful_answers": 6,
+    "joint_f1": 0.0,
+    "extraction_f1": 0.0
+  },
+  "v2": {
+    "artifact": "v2-development-ollama-frozen.json",
+    "scheduled_answers": 40,
+    "completed_answers": 40,
+    "successful_answers": 29,
+    "joint_f1": 0.05925925925925926,
+    "extraction_f1": 0.14320987654320988
+  },
+  "targeted_change": {
+    "description": "V2 adds a sentence-by-sentence review for connected clauses, comparisons, historical dates, policy conditions, and factual assertions embedded in advice.",
+    "measured_observation": "The completed v2 artifact accepted 29 predictions, with extraction F1 0.1432 and joint F1 0.0593.",
+    "interpretation": "V2 has measurable local-model output, but the v1 run stopped at 8 of 40 answers, so these aggregate values are not a fair full-split improvement claim.",
+    "regressions_or_limitations": [
+      "The local Ollama model still missed many development gold spans.",
+      "Hosted-provider comparison was unavailable because Gemini quota and OpenAI credits were exhausted."
+    ]
+  }
+}
