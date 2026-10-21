@@ -12,6 +12,7 @@ from typing import Any
 from dotenv import load_dotenv
 
 from .agent import AnswerProcessingError, ClaimAgent
+from .agent import MAX_MODEL_TURNS
 from .data import (
     DATASET_VERSION,
     EVALUATOR_VERSION,
@@ -25,6 +26,16 @@ from .data import (
 from .facts import FactStore
 from .provider import GeminiProvider, OllamaProvider, OpenAIProvider
 from .scoring import check_summary, score_development
+
+
+def validate_answer_outcomes(scheduled_ids: list[str], outcomes: list[dict[str, Any]]) -> None:
+    observed_ids = [outcome["answer_id"] for outcome in outcomes]
+    if len(observed_ids) != len(set(observed_ids)):
+        raise RuntimeError("Run contains duplicate answer outcomes")
+    if set(observed_ids) != set(scheduled_ids):
+        missing = sorted(set(scheduled_ids) - set(observed_ids))
+        extra = sorted(set(observed_ids) - set(scheduled_ids))
+        raise RuntimeError(f"Run answer outcomes do not match schedule; missing={missing}, extra={extra}")
 
 
 def run(project_dir: Path, version: str, split: str, output: Path) -> dict[str, Any]:
@@ -47,7 +58,7 @@ def run(project_dir: Path, version: str, split: str, output: Path) -> dict[str, 
     elif provider_name == "gemini":
         model = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
         provider = GeminiProvider(model=model, timeout=timeout, api_key=os.getenv("GEMINI_API_KEY"))
-    agent = ClaimAgent(provider, store, version, max_turns=4 if provider_name == "ollama" else 2)
+    agent = ClaimAgent(provider, store, version, max_turns=MAX_MODEL_TURNS)
     predictions: dict[str, list[dict[str, Any]]] = {}
     errors: dict[str, str] = {}
     outcomes: list[dict[str, Any]] = []
@@ -63,9 +74,9 @@ def run(project_dir: Path, version: str, split: str, output: Path) -> dict[str, 
         "evaluator_version": EVALUATOR_VERSION,
         "provider": provider_name,
         "model": model,
-        "settings": {"timeout_seconds": timeout, "max_turns": 4 if provider_name == "ollama" else 2},
+        "settings": {"timeout_seconds": timeout, "max_turns": MAX_MODEL_TURNS},
         "input_hashes": {name: file_hash(project_dir / name) for name in ("answers.csv", "brand_facts.csv", "development_gold.csv")},
-        "counts": {"scheduled_answers": len(answers), "completed_answers": 0, "successful_answers": 0},
+        "counts": {"scheduled_answers": len(answers), "completed_answers": 0, "successful_answers": 0, "error_answers": 0},
         "metrics": check_summary({}, {}) if split != "development" else score_development(load_gold(project_dir / "development_gold.csv"), {}, {}),
         "answer_outcomes": outcomes,
         "predictions": predictions,
@@ -95,6 +106,7 @@ def run(project_dir: Path, version: str, split: str, output: Path) -> dict[str, 
             )
         report["counts"]["completed_answers"] = index
         report["counts"]["successful_answers"] = index - len(errors)
+        report["counts"]["error_answers"] = len(errors)
         report["answer_outcomes"] = outcomes
         report["predictions"] = predictions
         report["metrics"] = (
@@ -104,6 +116,7 @@ def run(project_dir: Path, version: str, split: str, output: Path) -> dict[str, 
         )
         save_report()
         print(f"[{index}/{total}] {answer.answer_id}: {outcomes[-1]['status']}", flush=True)
+    validate_answer_outcomes([answer.answer_id for answer in answers], outcomes)
     report["status"] = "completed"
     save_report()
     return report

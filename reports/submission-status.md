@@ -39,7 +39,12 @@ Then call `POST /evaluation-runs` and retrieve the run with
 ## Tests
 
 The controlled suite was run locally and passed. The final observed result was
-16 passed tests with one dependency deprecation warning.
+29 passed tests with one dependency deprecation warning.
+
+The implementation enforces the assessment's maximum of three provider turns
+per answer. Additional controlled tests cover CSV quoting/newlines, exact
+source preservation, invalid spans, provider errors, turn limits, gold-data
+isolation, and joined API retrieval.
 
 ## Targeted improvement comparison
 

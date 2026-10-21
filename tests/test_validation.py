@@ -1,5 +1,6 @@
 import pytest
 
+from speaker_agent.runner import validate_answer_outcomes
 from speaker_agent.scoring import score_development
 from speaker_agent.validation import OutputValidationError, validate_output
 
@@ -54,3 +55,34 @@ def test_scorer_arithmetic_example():
     metrics = score_development(gold, predictions, {})
     assert metrics["extraction_f1"] == pytest.approx(0.8)
     assert metrics["joint_f1"] == pytest.approx(0.7)
+
+
+def test_scorer_counts_missing_and_duplicate_answer_outcomes():
+    gold = [
+        {"claim_id": "A1:0:4", "expected_label": "supported"},
+        {"claim_id": "A2:0:4", "expected_label": "unknown"},
+    ]
+    predictions = {"A1": [{"start_char": 0, "end_char": 4, "label": "supported"}]}
+    metrics = score_development(gold, predictions, {"A2": "provider failed"})
+    assert metrics["gold_claims"] == 2
+    assert metrics["missed_gold_ids"] == ["A2:0:4"]
+    assert metrics["answer_error_count"] == 1
+
+    duplicate_predictions = {
+        "A1": [
+            {"start_char": 0, "end_char": 4, "label": "supported"},
+            {"start_char": 0, "end_char": 4, "label": "supported"},
+        ]
+    }
+    duplicate_metrics = score_development(gold, duplicate_predictions, {})
+    assert duplicate_metrics["accepted_predictions"] == 2
+    assert duplicate_metrics["matched_spans"] == 1
+    assert duplicate_metrics["duplicate_prediction_ids"] == ["A1:0:4"]
+    assert duplicate_metrics["unmatched_prediction_ids"] == ["A1:0:4"]
+
+
+def test_runner_rejects_missing_and_duplicate_answer_outcomes():
+    with pytest.raises(RuntimeError, match="missing"):
+        validate_answer_outcomes(["A1", "A2"], [{"answer_id": "A1"}])
+    with pytest.raises(RuntimeError, match="duplicate"):
+        validate_answer_outcomes(["A1"], [{"answer_id": "A1"}, {"answer_id": "A1"}])

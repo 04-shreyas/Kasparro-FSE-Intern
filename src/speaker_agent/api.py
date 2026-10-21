@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from fastapi import BackgroundTasks, FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict, Field
 
-from .agent import AnswerProcessingError, ClaimAgent
+from .agent import MAX_MODEL_TURNS, AnswerProcessingError, ClaimAgent
 from .data import (
     DATASET_VERSION,
     EVALUATOR_VERSION,
@@ -75,7 +75,7 @@ def get_agent(version: str) -> ClaimAgent:
         provider,
         store,
         version,
-        max_turns=4 if provider_name == "ollama" else 2,
+        max_turns=MAX_MODEL_TURNS,
     )
 
 
@@ -88,7 +88,7 @@ def _run_metadata(version: str, split: str) -> dict[str, Any]:
     else:
         model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
     timeout = float(os.getenv("AGENT_TIMEOUT_SECONDS", "180"))
-    max_turns = 4 if provider_name == "ollama" else 2
+    max_turns = MAX_MODEL_TURNS
     return {
         "source": "api",
         "split": split,

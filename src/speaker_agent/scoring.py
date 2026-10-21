@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from collections import defaultdict
 from typing import Any
 
 
@@ -13,8 +12,14 @@ def score_development(gold: list[dict[str, str]], predictions: dict[str, list[di
     correct = 0
     matched_ids: set[str] = set()
     wrong_ids: list[str] = []
+    seen_prediction_ids: set[str] = set()
+    duplicate_ids: list[str] = []
     for answer_id, claim in predicted:
         claim_id = f"{answer_id}:{claim['start_char']}:{claim['end_char']}"
+        if claim_id in seen_prediction_ids:
+            duplicate_ids.append(claim_id)
+            continue
+        seen_prediction_ids.add(claim_id)
         row = gold_by_id.get(claim_id)
         if row is not None:
             matched += 1
@@ -29,11 +34,13 @@ def score_development(gold: list[dict[str, str]], predictions: dict[str, list[di
         return 0.0 if denominator == 0 else 2 * p / denominator
 
     missed = sorted(set(gold_by_id) - matched_ids)
-    extra = sorted(
+    extra_ids = {
         f"{answer_id}:{claim['start_char']}:{claim['end_char']}"
         for answer_id, claim in predicted
         if f"{answer_id}:{claim['start_char']}:{claim['end_char']}" not in gold_by_id
-    )
+    }
+    extra_ids.update(duplicate_ids)
+    extra = sorted(extra_ids)
     return {
         "gold_claims": gold_count,
         "accepted_predictions": prediction_count,
@@ -48,6 +55,7 @@ def score_development(gold: list[dict[str, str]], predictions: dict[str, list[di
         "gold_claim_coverage": correct / gold_count if gold_count else 0.0,
         "missed_gold_ids": missed,
         "unmatched_prediction_ids": extra,
+        "duplicate_prediction_ids": sorted(duplicate_ids),
         "matched_wrong_label_ids": sorted(wrong_ids),
         "answer_error_count": len(errors),
         "answer_errors": errors,

@@ -44,11 +44,9 @@ uvicorn speaker_agent.api:app --reload
 
 `AGENT_TIMEOUT_SECONDS` defaults to 180 seconds and applies to each provider
 request. This is intentionally longer for local Ollama inference. The agent
-allows at most two provider turns per answer: a tool-request turn followed by
-a final classification turn. Ollama receives at most one additional corrective
-turn when it returns a malformed final object. The runner prints progress and
-saves the report after each answer, so an interrupted run retains completed
-answer outcomes.
+allows at most three provider turns per answer, including the tool request and
+bounded correction path. The runner prints progress and saves the report after
+each answer, so an interrupted run retains completed answer outcomes.
 Provider failures remain answer-level errors; they are never converted to
 `unknown`.
 
@@ -59,11 +57,12 @@ or `AGENT_PROVIDER=ollama`. For the included frozen evidence, Ollama with
 quotas were exhausted. This is disclosed deliberately; the local results are
 not presented as hosted-provider benchmark results.
 
-For a no-cost local smoke test, install/start Ollama and set
-`AGENT_PROVIDER=ollama`. The repository detects the installed
-`qwen2.5-coder:7b` model through Ollama's local API. Local reports must be
-labelled as local-model evidence; they do not replace the assessment's
-required live Gemini run.
+For the included reproducible no-cost evidence, install/start Ollama and set
+`AGENT_PROVIDER=ollama`. The repository uses the local
+`qwen2.5-coder:7b` model through Ollama's local API. Ollama was used because
+the available hosted-provider free-plan credits and quotas were exhausted.
+Local reports are labelled as local-model evidence and are not presented as
+hosted-provider benchmark results.
 
 ## Design notes
 

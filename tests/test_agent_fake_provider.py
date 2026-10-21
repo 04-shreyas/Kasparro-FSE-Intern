@@ -61,9 +61,34 @@ def test_agent_rejects_illegal_tool():
         make_agent(provider).classify("A1", "cleartrail", "q", "Advice.")
 
 
+def test_agent_rejects_unknown_requested_brand():
+    provider = FakeProvider([Response(Message(tool_calls=[Call("get_brand_facts", json.dumps({"brand_id": "unknown"}))]))])
+    with pytest.raises(AnswerProcessingError):
+        make_agent(provider).classify("A1", "cleartrail", "q", "Advice.")
+
+
+def test_agent_reports_turn_exhaustion():
+    provider = FakeProvider(
+        [
+            Response(Message(tool_calls=[Call("get_brand_facts", json.dumps({"brand_id": "cleartrail"}))])),
+            Response(Message(tool_calls=[Call("get_brand_facts", json.dumps({"brand_id": "cleartrail"}))])),
+            Response(Message(tool_calls=[Call("get_brand_facts", json.dumps({"brand_id": "cleartrail"}))])),
+        ]
+    )
+    agent = make_agent(provider)
+    with pytest.raises(AnswerProcessingError, match="turn limit"):
+        agent.classify("A1", "cleartrail", "q", "Price is INR 10.")
+
+
+def test_agent_rejects_malformed_json():
+    provider = FakeProvider([Response(Message("not json")), Response(Message("not json")), Response(Message("not json"))])
+    with pytest.raises(AnswerProcessingError, match="invalid JSON"):
+        make_agent(provider).classify("A1", "cleartrail", "q", "Advice.")
+
+
 def test_agent_preserves_invalid_provider_output_as_error():
     invalid = Response(Message('{"answer_id":"A1","claims":[{"quote":"Advice.","label":"supported","fact_ids":["fake"],"reason":""}]}'))
-    provider = FakeProvider([invalid, invalid])
+    provider = FakeProvider([invalid, invalid, invalid])
     with pytest.raises(AnswerProcessingError):
         make_agent(provider).classify("A1", "cleartrail", "q", "Advice.")
 
