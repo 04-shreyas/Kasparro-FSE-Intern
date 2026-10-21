@@ -1,0 +1,23 @@
+{
+  "verification": "successful",
+  "database": {
+    "engine": "PostgreSQL",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "database": "speaker_agent",
+    "credentials_included": false
+  },
+  "operations": [
+    "initialized evaluation_runs, answer_results, and claim_results schema",
+    "inserted one evaluation run",
+    "inserted one answer result",
+    "inserted one claim result",
+    "read back run, answer, and claim rows"
+  ],
+  "observed": {
+    "run_status": "completed",
+    "answer_status": "succeeded",
+    "claim_label": "supported",
+    "claim_quote": "PostgreSQL round trip"
+  }
+}

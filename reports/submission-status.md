@@ -21,10 +21,11 @@ Ollama artifacts are not presented as live OpenAI/Gemini benchmark results.
 
 ## API and PostgreSQL
 
-The FastAPI routes and PostgreSQL schema are implemented. A live PostgreSQL
-round trip was attempted against the locally installed PostgreSQL service,
-but authentication/configuration verification stalled, so no successful
-database evidence is claimed. Reproduction requires:
+The FastAPI routes and PostgreSQL schema are implemented. A live local
+PostgreSQL round trip was completed successfully: the schema was initialized,
+an evaluation run, answer result, and claim result were inserted, and all
+three were read back. Sanitized evidence is in
+`reports/postgresql-roundtrip.json`. Reproduction requires:
 
 ```powershell
 docker compose up -d db

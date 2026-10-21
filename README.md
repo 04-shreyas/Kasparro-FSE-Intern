@@ -109,10 +109,10 @@ pipeline evidence and is labelled as such. See
 `reports/submission-status.md` and
 `reports/sanitized-ollama-exchange.json` for the evidence and limitations.
 
-The FastAPI/PostgreSQL implementation is included. A live PostgreSQL
-round-trip was attempted against a locally running PostgreSQL service but
-could not be completed because local authentication/configuration verification
-stalled. The repository does not claim this as successful evidence. Start the
-included database with `docker compose up -d db`, configure `DATABASE_URL`,
-and run the API to reproduce it in an environment with working PostgreSQL
-credentials.
+The FastAPI/PostgreSQL implementation is included and was verified with a live
+local PostgreSQL round trip: the schema was initialized, an evaluation run,
+answer result, and claim result were inserted, and all three were read back
+successfully. Sanitized evidence is in
+`reports/postgresql-roundtrip.json`. Start the included database with
+`docker compose up -d db`, configure `DATABASE_URL`, and run the API to
+reproduce it.
